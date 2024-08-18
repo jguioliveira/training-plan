@@ -1,0 +1,58 @@
+﻿@page "/login"
+@layout TrainingPlan.WebApp.Client.Layout.EmptyLayout
+@using System.ComponentModel.DataAnnotations
+
+<MudContainer MaxWidth="MaxWidth.Small">
+    <MudPaper Width="100%" Square="true">
+        <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            <MudCard Class="">
+                <MudCardContent>
+                    <MudTextField Label="Email" Class="mt-3"
+                                    @bind-Value="model.Email" For="@(() => model.Email)" />
+                    <MudTextField Label="Password" Class="mt-3"
+                                    @bind-Value="model.Password" For="@(() => model.Password)" InputType="InputType.Password" />
+                    <MudCheckBox Label="Remember me" @bind-Value="model.RememberMe"></MudCheckBox>
+                </MudCardContent>
+                <MudCardActions Class="">
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Login</MudButton>
+                </MudCardActions>
+                @if (!success)
+                {
+                    <MudText Color="@Color.Error">
+                        <ValidationSummary />
+                    </MudText>
+                }
+            </MudCard>
+        </EditForm>
+    </MudPaper>
+</MudContainer>
+
+
+
+@code {
+    RegisterAccountForm model = new RegisterAccountForm();
+    bool success;
+
+    public class RegisterAccountForm
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+
+        public bool RememberMe { get; set; }
+
+    }
+
+    private void OnValidSubmit(EditContext context)
+    {
+        success = true;
+        StateHasChanged();
+    }
+
+}
+
+

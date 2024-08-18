@@ -1,0 +1,61 @@
+# Ignore build output directories
+bin/
+obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# ASP.NET Core files
+appsettings*.json
+secrets.json
+
+# IDE-specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.ide
+.project
+*.sln.cache
+*.vs/
+
+# Package directories
+packages/
+*.nupkg
+*.snupkg
+
+# Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# ASP.NET Scaffolding
+.scaffolding/
+
+# Dotnet specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio Code settings
+.vscode/
+
+# Rider
+.idea/
+
+# Backup files
+*.bak
+
+# Publish output
+wwwroot/
+node_modules/
+dist/

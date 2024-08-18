@@ -1,0 +1,22 @@
+services :
+  db:
+    image: postgres:16.2-alpine3.19
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: tpuser
+      POSTGRES_PASSWORD: senha123
+      POSTGRES_DB: training-plan
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data 
+  admin:
+    image: adminer
+    restart: always
+    depends_on: 
+      - db
+    ports:
+      - 8080:8080
+
+volumes:
+  postgres_volume:
+

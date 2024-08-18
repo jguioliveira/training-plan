@@ -1,0 +1,71 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1" Class="muudstrap-navbar">
+        <MudImage Src="images/Anderson.png" Alt="Anderson Teles - Treinamento Esportivo" Height="55" Elevation="25" Class="rounded-lg" />
+        <MudSpacer />
+        
+        @* <MudPaper>
+            <MudNavLink Href="Instructors/" Match="NavLinkMatch.Prefix">Sobre mim</MudNavLink>
+        </MudPaper>
+        <MudSpacer />
+        <MudPaper>
+            <MudNavLink Href="Instructors/" Match="NavLinkMatch.Prefix">AT Runners</MudNavLink>
+        </MudPaper>
+        <MudSpacer />
+        <MudPaper>
+            <MudNavLink Href="Instructors/" Match="NavLinkMatch.Prefix">Nosso Grupo</MudNavLink>
+        </MudPaper>
+        <MudSpacer />
+        <MudPaper>
+            <MudNavLink Href="Instructors/" Match="NavLinkMatch.Prefix">Contato</MudNavLink>
+        </MudPaper>     *@
+
+        <MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Inherit" Edge="Edge.End" Title="Sign in" Href="/Login" Rel="noopener"></MudIconButton>
+                
+    </MudAppBar>
+
+    <MudDrawer @bind-Open="@open" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <NavMenu />
+    </MudDrawer>
+
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+
+@code {
+
+    
+    private bool _isDarkMode = false;
+    bool open = true;
+
+    MudTheme _theme = new MudTheme()
+        {
+            Palette = new PaletteLight()
+            {
+                Primary = new MudBlazor.Utilities.MudColor("#520b5a"),
+                Secondary = new MudBlazor.Utilities.MudColor("#b62aad"),
+                Tertiary = new MudBlazor.Utilities.MudColor("#f0523d"),
+                AppbarBackground = new MudBlazor.Utilities.MudColor("#520b5a"),
+            },
+            // Palette = new PaletteLight()
+            // {
+            //     Primary = Colors.Blue.Default,
+            //     Secondary = Colors.Green.Accent4,
+            //     AppbarBackground = new MudBlazor.Utilities.MudColor("#520b5a"),
+            // },
+            
+        };
+
+    void DrawerToggle()
+    {
+        open = !open;
+    }
+
+}

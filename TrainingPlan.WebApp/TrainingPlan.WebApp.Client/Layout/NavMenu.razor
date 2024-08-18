@@ -1,0 +1,23 @@
+﻿<MudNavMenu>
+    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+
+    <AuthorizeView>
+        <Authorized>
+            @* <MudNavLink Href="Account/Manage" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">@context.User.Identity?.Name</MudNavLink> *@
+            <MudNavLink Href="Account/Manage" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.ManageAccounts">My Account</MudNavLink>
+            <MudNavLink Href="Athletes/" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Person">Athletes</MudNavLink>
+            <MudNavLink Href="Instructors/" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Engineering">Instructors</MudNavLink>
+            <MudNavLink Href="Settings/" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.SettingsApplications">Settings</MudNavLink>
+            <form action="Account/Logout" method="post">
+                <AntiforgeryToken />
+                <input type="hidden" name="ReturnUrl" value="" />
+                <MudNavLink Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Logout">
+                        <button type="submit" >Logout</button>
+                        
+                </MudNavLink>
+            </form>
+            
+        </Authorized>
+    </AuthorizeView>
+
+</MudNavMenu>

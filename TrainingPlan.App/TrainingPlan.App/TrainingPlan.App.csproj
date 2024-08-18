@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-TrainingPlan.App-1baade16-c2b0-491b-83fe-89d66eb5d293</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Application\**" />
+    <Compile Remove="Components\Account\**" />
+    <Compile Remove="Components\Athletes\**" />
+    <Compile Remove="Components\Instructors\**" />
+    <Compile Remove="Components\Layout\**" />
+    <Compile Remove="Components\Settings\**" />
+    <Content Remove="Application\**" />
+    <Content Remove="Components\Account\**" />
+    <Content Remove="Components\Athletes\**" />
+    <Content Remove="Components\Instructors\**" />
+    <Content Remove="Components\Layout\**" />
+    <Content Remove="Components\Settings\**" />
+    <EmbeddedResource Remove="Application\**" />
+    <EmbeddedResource Remove="Components\Account\**" />
+    <EmbeddedResource Remove="Components\Athletes\**" />
+    <EmbeddedResource Remove="Components\Instructors\**" />
+    <EmbeddedResource Remove="Components\Layout\**" />
+    <EmbeddedResource Remove="Components\Settings\**" />
+    <None Remove="Application\**" />
+    <None Remove="Components\Account\**" />
+    <None Remove="Components\Athletes\**" />
+    <None Remove="Components\Instructors\**" />
+    <None Remove="Components\Layout\**" />
+    <None Remove="Components\Settings\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\TrainingPlan.Domain\TrainingPlan.Domain.csproj" />
+    <ProjectReference Include="..\..\TrainingPlan.Infrastructure\TrainingPlan.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\TrainingPlan.Shared\TrainingPlan.Shared.csproj" />
+    <ProjectReference Include="..\TrainingPlan.App.Client\TrainingPlan.App.Client.csproj" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4" />
+    <PackageReference Include="MudBlazor" Version="6.19.1" />
+	  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
+  </ItemGroup>
+
+
+
+</Project>

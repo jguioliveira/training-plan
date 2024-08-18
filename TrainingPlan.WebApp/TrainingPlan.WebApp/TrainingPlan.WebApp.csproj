@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\TrainingPlan.Domain\TrainingPlan.Domain.csproj" />
+    <ProjectReference Include="..\..\TrainingPlan.Infrastructure\TrainingPlan.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\TrainingPlan.Shared\TrainingPlan.Shared.csproj" />
+    <ProjectReference Include="..\TrainingPlan.WebApp.Client\TrainingPlan.WebApp.Client.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.*" />
+  </ItemGroup>
+
+</Project>
