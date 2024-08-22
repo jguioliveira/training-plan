@@ -61,12 +61,11 @@ namespace TrainingPlan.API.Application.Features.AthleteFeatures.UpdateAthlete
         public string? Phone { get; set; }
     }
 
-    public class UpdateAthleteValidator : AbstractValidator<CreateAthleteRequest>
+    public class UpdateAthleteValidator : AbstractValidator<UpdateAthleteRequest>
     {
         public UpdateAthleteValidator()
         {
             RuleFor(x => x.Name).MinimumLength(3).MaximumLength(50);
-            RuleFor(x => x.Password).MinimumLength(8).MaximumLength(20);
         }
     }
 

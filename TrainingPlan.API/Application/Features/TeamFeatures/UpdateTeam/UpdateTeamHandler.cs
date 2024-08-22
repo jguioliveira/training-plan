@@ -63,4 +63,13 @@ namespace TrainingPlan.API.Application.Features.TeamFeatures.UpdateTeam
         {
         }
     }
+
+    public class UpdateTeamValidator : AbstractValidator<UpdateTeamRequest>
+    {
+        public UpdateTeamValidator()
+        {
+            RuleFor(x => x.Email).MaximumLength(50).EmailAddress();
+            RuleFor(x => x.Name).MinimumLength(3).MaximumLength(50);
+        }
+    }
 }
