@@ -8,6 +8,8 @@ namespace TrainingPlan.Infrastructure.DbContext
     {
         public void Configure(EntityTypeBuilder<SocialMedia> builder)
         {
+            builder.HasKey(t => new { t.Name, t.TeamId });
+
             builder
                 .Property(b => b.TeamId)
                 .IsRequired();

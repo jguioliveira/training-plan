@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System.Data;
-using System.Threading;
 using TrainingPlan.Domain.Entities;
 using TrainingPlan.Domain.Repositories;
 using TrainingPlan.Infrastructure.DbContext;
@@ -74,6 +73,21 @@ namespace TrainingPlan.Infrastructure.Repositories
             query += $"\n  SELECT COUNT(*) As Total FROM \"{typeof(IEntity).Name}\" {where};";
 
             return _dapperConnection.QueryMultipleAsync(query, param: parameters);
+        }
+
+        protected Task<SqlMapper.GridReader> GetWithParentsAsync(string query, object param)
+        {
+            var dictionary = new Dictionary<string, object>
+            {
+                { "param", param }
+            };
+
+            var parameters = new DynamicParameters(dictionary);
+
+            using (var connection = new NpgsqlConnection(dbContext.Database.GetConnectionString()))                
+                return _dapperConnection.QueryMultipleAsync(query, param: parameters);
+
+             
         }
 
         protected Task<TResult?> GetAsync<TResult>(string query, object param)

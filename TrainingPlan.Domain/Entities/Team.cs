@@ -4,13 +4,29 @@ namespace TrainingPlan.Domain.Entities
 {
     public class Team(string name, string email) : BaseEntity()
     {
+        bool isTeamSettingsReset;
+
         public string Name { get; private set; } = name;
 
         public string Email { get; private set; } = email;
 
-        public virtual IReadOnlyCollection<TeamSettings>? TeamSettings { get; private set; }
+        private List<TeamSettings> _teamSettings = [];
+        public virtual IReadOnlyCollection<TeamSettings> TeamSettings
+        {
+            get
+            {
+                return _teamSettings;
+            }
+        }
 
-        public virtual IReadOnlyCollection<SocialMedia>? SocialsMedia { get; private set; }
+        private List<SocialMedia> _socialMedia = [];
+        public virtual IReadOnlyCollection<SocialMedia>? SocialsMedia
+        {
+            get
+            {
+                return _socialMedia;
+            }
+        }
 
 
         public void UpdateName(string name)
@@ -22,14 +38,55 @@ namespace TrainingPlan.Domain.Entities
         {
             Email = email;
         }
+
+        public void AddSettings(string key, string value)
+        {
+            if (!isTeamSettingsReset)
+            {
+                _teamSettings = [];
+                isTeamSettingsReset = true;
+            }
+
+            TeamSettings settings = new(Id, key, value);
+            _teamSettings.Add(settings);
+        }
+
+        public void SaveSocialMedia(string name, string account)
+        {
+            _socialMedia ??= [];
+
+            var socialMedia = _socialMedia.SingleOrDefault(s => s.Name == name);
+
+            if (socialMedia != null)
+            {
+                //when the social media is found, we only update the account information
+                socialMedia.Account = account;
+            }
+            else
+            {
+                socialMedia = new(Id, name, account);
+                _socialMedia.Add(socialMedia);
+            }
+        }
+
+        public void DeleteSocialMedia(string name)
+        {
+            _socialMedia ??= [];
+
+            var socialMedia = _socialMedia.SingleOrDefault(s => s.Name == name);
+
+            if (socialMedia != null)
+            {
+                _socialMedia.Remove(socialMedia);
+            }
+        }
     }
 
-    public class SocialMedia(int id, int teamId, string name, string account)
+    public class SocialMedia(int teamId, string name, string account)
     {
-        public int Id { get; private set; } = id;
         public int TeamId { get; private set; } = teamId;
         public string Name { get; private set; } = name;
-        public string Account { get; private set; } = account;
+        public string Account { get; internal set; } = account;
 
         public virtual Team Team { get; private set; }
     }
