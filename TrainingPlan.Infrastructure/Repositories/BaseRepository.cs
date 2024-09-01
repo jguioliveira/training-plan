@@ -82,12 +82,17 @@ namespace TrainingPlan.Infrastructure.Repositories
                 { "param", param }
             };
 
-            var parameters = new DynamicParameters(dictionary);
+            return GetWithParentsAsync(query, dictionary);
+        }
 
-            using (var connection = new NpgsqlConnection(dbContext.Database.GetConnectionString()))                
+        protected Task<SqlMapper.GridReader> GetWithParentsAsync(string query, Dictionary<string, object> filter)
+        {
+            var parameters = new DynamicParameters(filter);
+
+            using (var connection = new NpgsqlConnection(dbContext.Database.GetConnectionString()))
                 return _dapperConnection.QueryMultipleAsync(query, param: parameters);
 
-             
+
         }
 
         protected Task<TResult?> GetAsync<TResult>(string query, object param)

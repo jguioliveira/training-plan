@@ -1,14 +1,7 @@
 using FluentValidation;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Web;
-using System.Reflection;
 using TrainingPlan.API.Application.Common;
-using TrainingPlan.API.Application.Features.AthleteFeatures.CreateAthlete;
-using TrainingPlan.Domain.Entities;
 using TrainingPlan.Domain.Repositories;
 using TrainingPlan.Infrastructure.DbContext;
 using TrainingPlan.Infrastructure.Repositories;
@@ -49,10 +42,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IPersonRepository, PersonRepository>();
 builder.Services.AddTransient<ITeamRepository, TeamRepository>();
+builder.Services.AddTransient<IPlanRepository, PlanRepository>();
+builder.Services.AddTransient<IWorkoutRepository, WorkoutRepository>();
+builder.Services.AddTransient<IContentRepository, ContentRepository>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddValidatorsFromAssemblyContaining(typeof(Program));
-//builder.Services.AddScoped<IValidator<CreateAthleteRequest>, CreateAthleteValidator>();
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 

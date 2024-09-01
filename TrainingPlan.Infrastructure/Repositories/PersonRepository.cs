@@ -2,7 +2,6 @@
 using TrainingPlan.Domain.Repositories;
 using TrainingPlan.Infrastructure.DbContext;
 using TrainingPlan.Domain.DTO;
-using System.Threading;
 
 namespace TrainingPlan.Infrastructure.Repositories
 {

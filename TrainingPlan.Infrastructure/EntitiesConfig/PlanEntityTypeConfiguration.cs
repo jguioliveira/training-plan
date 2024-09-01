@@ -28,7 +28,7 @@ namespace TrainingPlan.Infrastructure.DbContext
             builder
                 .HasOne(b => b.Athlete)
                 .WithMany(b => b.Plans)
-                .HasForeignKey(b => b.AhtleteId);
+                .HasForeignKey(b => b.AthleteId);
 
             builder
                 .HasOne(b => b.Instructor)
