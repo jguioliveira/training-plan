@@ -26,21 +26,26 @@ namespace TrainingPlan.Domain.DTO
         public IEnumerable<CommentDTO>? Comments { get; set; }
     }
 
+    public record ContentsPagedListDTO : PaginationResult<ContentDTO>
+    {
+    }
+
     public record ContentDTO
     {
         public string Title { get; set; }
 
         public string? Description { get; set; }
-        public string BlobId { get; set; }
+        public string Data { get; set; }
 
         public string Type { get; set; }
     }
 
     public record CommentDTO
     {
+        public int Id { get; set; }
         public string PersonName { get; set; }
         public string PersonType { get; set; }
         public string Text { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime ModifiedAt { get; set; }
     }
 }

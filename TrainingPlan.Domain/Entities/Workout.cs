@@ -9,7 +9,12 @@
 
         public virtual Plan Plan { get; private set; }
         public virtual Content? Content { get; private set; }
-        public virtual IReadOnlyCollection<Comment>? Comments { get; private set; }
+
+        private readonly List<Comment> _comments = new();
+        public virtual IReadOnlyCollection<Comment>? Comments 
+        { 
+            get { return _comments; }
+        }
 
         public void UpdateContent(Content content)
         {
@@ -25,6 +30,11 @@
         public void UpdateDescription(string description)
         {
             Description = description;
+        }
+
+        public void AddComment(Comment comment)
+        {
+            _comments.Add(comment);
         }
     }
 }

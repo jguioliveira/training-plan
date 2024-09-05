@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TrainingPlan.Infrastructure.DbContext;
@@ -11,9 +12,11 @@ using TrainingPlan.Infrastructure.DbContext;
 namespace TrainingPlan.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240902064140_ChangingContentColumn")]
+    partial class ChangingContentColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,14 +168,11 @@ namespace TrainingPlan.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<bool>("IsRemoved")
-                        .HasColumnType("boolean");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("PersonName")
                         .IsRequired()

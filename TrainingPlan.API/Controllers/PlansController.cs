@@ -2,11 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using TrainingPlan.API.Application.Features.PlanFeatures.CreatePlan;
-using TrainingPlan.API.Application.Features.PlanFeatures.CreateWorkout;
 using TrainingPlan.API.Application.Features.PlanFeatures.GetPlan;
-using TrainingPlan.API.Application.Features.PlanFeatures.GetWorkout;
 using TrainingPlan.API.Application.Features.PlanFeatures.UpdatePlan;
-using TrainingPlan.API.Application.Features.PlanFeatures.UpdateWorkout;
 using TrainingPlan.Domain.DTO;
 
 namespace TrainingPlan.API.Controllers
@@ -17,6 +14,12 @@ namespace TrainingPlan.API.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        /// <summary>
+        /// Get plan by athlete ID.
+        /// </summary>
+        /// <param name="athleteId">The ID of the athlete.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>The plan details.</returns>
         [HttpGet]
         [Route("athlete/{athleteId}")]
         [SwaggerOperation(Summary = "Get plan by athlete id")]
@@ -38,7 +41,16 @@ namespace TrainingPlan.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Creates a new plan.
+        /// </summary>
+        /// <param name="request">The request containing the plan details.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A response indicating the result of the operation.</returns>
         [HttpPost]
+        [SwaggerOperation(Summary = "Creates a new plan.")]
+        [SwaggerResponse(200, "Plan created successfully.")]
+        [SwaggerResponse(400, "Invalid request.")]
         public async Task<ActionResult<CreatePlanResponse>> CreateAsync(CreatePlanRequest request,
             CancellationToken cancellationToken)
         {
@@ -46,51 +58,20 @@ namespace TrainingPlan.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Updates an existing plan.
+        /// </summary>
+        /// <param name="request">The request containing the updated plan details.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A response indicating the result of the operation.</returns>
         [HttpPut]
+        [SwaggerOperation(Summary = "Updates an existing plan.")]
+        [SwaggerResponse(200, "Plan updated successfully.")]
+        [SwaggerResponse(400, "Invalid request.")]
         public async Task<ActionResult<UpdatePlanResponse>> UpdateAsync(UpdatePlanRequest request,
             CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(request, cancellationToken);
-            return Ok(response);
-        }
-
-        [HttpPost]
-        [Route("{Id}/workout")]
-        public async Task<ActionResult<CreateWorkoutResponse>> CreateWorkoutAsync(CreatePlanWorkoutRequest request,
-            CancellationToken cancellationToken)
-        {
-            var response = await _mediator.Send(request, cancellationToken);
-            return Ok(response);
-        }
-
-        [HttpPut]
-        [Route("{Id}/workout")]
-        public async Task<ActionResult<UpdateWorkoutResponse>> UpdateWorkoutAsync(UpdatePlanWorkoutRequest request,
-            CancellationToken cancellationToken)
-        {
-            var response = await _mediator.Send(request, cancellationToken);
-            return Ok(response);
-        }
-
-        [HttpGet]
-        [Route("{id}/workout/{idWorkout}")]
-        [SwaggerOperation(Summary = "Get workout by id")]
-        [SwaggerResponse(404, "Workout was not found")]
-        [SwaggerResponse(200, "Returns a specific workout", typeof(WorkoutDTO))]
-        public async Task<ActionResult<WorkoutDTO>> GetWorkoutAsync(
-            int id, 
-            int idWorkout,
-            CancellationToken cancellationToken)
-        {
-            GetWorkoutRequest request = new() { IdWorkout = idWorkout };
-
-            var response = await _mediator.Send(request, cancellationToken);
-
-            if (response == null)
-            {
-                return NotFound();
-            }
-
             return Ok(response);
         }
     }

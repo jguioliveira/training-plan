@@ -10,7 +10,9 @@ namespace TrainingPlan.Infrastructure.Repositories
     {
         public override Task<Workout?> GetAsync(int id, CancellationToken cancellationToken)
         {
-            return dbContext.Workouts
+            return dbContext
+                .Workouts
+                .Include(w => w.Comments)
                 .SingleOrDefaultAsync(t => t.Id == id);
         }
 

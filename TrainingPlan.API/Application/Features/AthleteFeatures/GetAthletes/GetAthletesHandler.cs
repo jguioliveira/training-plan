@@ -30,8 +30,4 @@ namespace TrainingPlan.API.Application.Features.AthleteFeatures.GetAthletes
         public string Direction { get; set; }
     }
 
-    public record GetAthletesResponse : AthletesPagedListDTO
-    {
-
-    }
 }

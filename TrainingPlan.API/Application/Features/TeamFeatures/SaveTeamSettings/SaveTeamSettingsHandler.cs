@@ -31,7 +31,7 @@ namespace TrainingPlan.API.Application.Features.TeamFeatures.SaveTeamSettings
                 return new SaveTeamSettingsResponse(false, "Validation failure", validationResult.ToDictionary());
             }
 
-            var team = await _teamRepository.GetAsync(request.Id, cancellationToken);
+            var team = await _teamRepository.GetAsync(request.teamId, cancellationToken);
 
             if (team == null)
                 return new SaveTeamSettingsResponse(false, "Team was not found.");
@@ -51,7 +51,7 @@ namespace TrainingPlan.API.Application.Features.TeamFeatures.SaveTeamSettings
     public record SaveTeamSettingsRequest : IRequest<SaveTeamSettingsResponse>
     {
         [FromRoute]
-        public int Id { get; set; }
+        public int teamId { get; set; }
 
         [FromBody]
         public Dictionary<string, string> Settings { get; set; }

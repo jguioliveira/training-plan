@@ -27,11 +27,6 @@ namespace TrainingPlan.Infrastructure.DbContext
                 .IsRequired();
 
             builder
-                .Property(b => b.Date)
-                .HasColumnType("date")
-                .IsRequired();
-
-            builder
                 .HasOne(b => b.Workout)
                 .WithMany(b => b.Comments)
                 .HasForeignKey(b => b.WorkoutId)

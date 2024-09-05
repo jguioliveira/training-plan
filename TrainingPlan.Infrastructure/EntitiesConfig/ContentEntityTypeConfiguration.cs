@@ -21,7 +21,7 @@ namespace TrainingPlan.Infrastructure.DbContext
                 .HasColumnType("text");
 
             builder
-                .Property(b => b.BlobId)
+                .Property(b => b.Data)
                 .HasColumnType("text")
                 .IsRequired();
 

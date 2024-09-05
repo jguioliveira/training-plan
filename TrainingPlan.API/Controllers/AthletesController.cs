@@ -15,6 +15,15 @@ namespace TrainingPlan.API.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        /// <summary>
+        /// Get paginated list of athletes.
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="name">Filter by athlete name.</param>
+        /// <param name="pageSize">Number of athletes per page.</param>
+        /// <param name="lastRowId">ID of the last athlete in the previous page.</param>
+        /// <param name="direction">Sort direction (ASC or DESC).</param>
+        /// <returns>Paginated list of athletes.</returns>
         [HttpGet]
         [SwaggerOperation(Summary = "Get paginated list of athletes")]
         [SwaggerResponse(200, "Returns the list of athletes", typeof(AthletesPagedListDTO))]
@@ -32,8 +41,13 @@ namespace TrainingPlan.API.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
-        [Route("{id}")]
+        /// <summary>
+        /// Get athlete by ID.
+        /// </summary>
+        /// <param name="id">The ID of the athlete.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>The athlete details.</returns>
+        [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Get athlete by id")]
         [SwaggerResponse(200, "Returns a specific athlete", typeof(AthleteDTO))]
         [SwaggerResponse(404, "Athlete was not found")]
@@ -53,7 +67,16 @@ namespace TrainingPlan.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Creates a new athlete.
+        /// </summary>
+        /// <param name="request">The request containing the athlete details.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A response indicating the result of the operation.</returns>
         [HttpPost]
+        [SwaggerOperation(Summary = "Creates a new athlete.")]
+        [SwaggerResponse(200, "Athlete created successfully.")]
+        [SwaggerResponse(400, "Invalid request.")]
         public async Task<ActionResult<CreateAthleteResponse>> CreateAsync(CreateAthleteRequest request,
             CancellationToken cancellationToken)
         {
@@ -61,7 +84,16 @@ namespace TrainingPlan.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Updates an existing athlete.
+        /// </summary>
+        /// <param name="request">The request containing the updated athlete details.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A response indicating the result of the operation.</returns>
         [HttpPut]
+        [SwaggerOperation(Summary = "Updates an existing athlete.")]
+        [SwaggerResponse(200, "Athlete updated successfully.")]
+        [SwaggerResponse(400, "Invalid request.")]
         public async Task<ActionResult<UpdateAthleteResponse>> UpdateAsync(UpdateAthleteRequest request,
             CancellationToken cancellationToken)
         {
