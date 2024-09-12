@@ -30,7 +30,7 @@ namespace TrainingPlan.API.Application.Features.PlanFeatures.CreatePlan
                 return new CreatePlanResponse(false, "Validation failure", validationResult.ToDictionary());
             }
 
-            var athlete = await _personRepository.GetAsync(request.AhtleteId, cancellationToken);
+            var athlete = await _personRepository.GetAsync(request.AthleteId, cancellationToken);
             var instructor = await _personRepository.GetAsync(request.InstructorId, cancellationToken);
 
             if (athlete == null || athlete.Id == 0)
@@ -39,7 +39,7 @@ namespace TrainingPlan.API.Application.Features.PlanFeatures.CreatePlan
             if (instructor == null || instructor.Id == 0)
                 return new CreatePlanResponse(false, "Instructor is not valid.");
 
-            var plan = new Plan(request.Name, request.Goal, request.AhtleteId, request.InstructorId, request.Description);            
+            var plan = new Plan(request.Name, request.Goal, request.AthleteId, request.InstructorId, request.Description);            
 
             _planRepository.Create(plan);
             await _unitOfWork.Save(cancellationToken);
@@ -53,7 +53,7 @@ namespace TrainingPlan.API.Application.Features.PlanFeatures.CreatePlan
         public string Name { get; set; }
         public string? Description { get; set; }
         public string Goal { get; set; }
-        public int AhtleteId { get; set; }
+        public int AthleteId { get; set; }
         public int InstructorId { get; set; }
     }
 
@@ -71,7 +71,7 @@ namespace TrainingPlan.API.Application.Features.PlanFeatures.CreatePlan
             RuleFor(x => x.Name).NotEmpty().MinimumLength(3).MaximumLength(50);
             RuleFor(x => x.Goal).NotEmpty().MinimumLength(3).MaximumLength(50);
             RuleFor(x => x.Description).MaximumLength(100);
-            RuleFor(x => x.AhtleteId).GreaterThan(0);
+            RuleFor(x => x.AthleteId).GreaterThan(0);
             RuleFor(x => x.InstructorId).GreaterThan(0);
         }
     }

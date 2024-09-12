@@ -41,5 +41,21 @@ namespace TrainingPlan.Infrastructure.Repositories
 
             return plan;
         }
+
+        public async Task<PlansPagedListDTO> GetPlansAsync(int lastId, int pageSize, string direction)
+        {
+            var results = await base.GetPagedAsync("Plans", lastId, pageSize, direction, null);
+
+            var items = await results.ReadAsync<PlanDTO>();
+            var total = await results.ReadSingleAsync<int>();
+
+            var athletes = new PlansPagedListDTO
+            {
+                Items = items,
+                Total = total,
+            };
+
+            return athletes;
+        }
     }
 }

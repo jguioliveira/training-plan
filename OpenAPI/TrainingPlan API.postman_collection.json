@@ -1,0 +1,434 @@
+{
+	"info": {
+		"_postman_id": "61556394-e629-4956-b5a8-2a1127cfad0f",
+		"name": "TrainingPlan API",
+		"description": "Postman collection for TrainingPlan API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3587138"
+	},
+	"item": [
+		{
+			"name": "Athletes",
+			"item": [
+				{
+					"name": "Get Athletes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "pageSize",
+								"value": "10"
+							},
+							{
+								"key": "lastId",
+								"value": "0"
+							},
+							{
+								"key": "direction",
+								"value": "ASC"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/Athletes?name=",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Athletes"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Athlete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"age\": 25\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/Athletes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Athletes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Athlete",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"name\": \"John Doe Updated\",\n  \"age\": 26\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/Athletes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Athletes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Athlete by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/Athletes/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Athletes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contents",
+			"item": [
+				{
+					"name": "Get Contents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "pageSize",
+								"value": "10"
+							},
+							{
+								"key": "lastId",
+								"value": "0"
+							},
+							{
+								"key": "direction",
+								"value": "ASC"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/Contents?title=",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Contents"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Content",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"New Content\",\n  \"description\": \"Content description\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/Contents",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Contents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Content",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"title\": \"Updated Content\",\n  \"description\": \"Updated description\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/Contents",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Contents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Content by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/Contents/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Contents",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Instructors",
+			"item": [
+				{
+					"name": "Get Instructors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "pageSize",
+								"value": "10"
+							},
+							{
+								"key": "lastId",
+								"value": "0"
+							},
+							{
+								"key": "direction",
+								"value": "ASC"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/Instructors?name=",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Instructors"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Instructor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Jane Doe\",\n  \"specialty\": \"Yoga\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/Instructors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Instructors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Instructor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"name\": \"Jane Doe Updated\",\n  \"specialty\": \"Pilates\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/Instructors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Instructors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Instructor by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/Instructors/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Instructors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teams",
+			"item": [
+				{
+					"name": "Get Team by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/Teams/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Teams",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Team",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Team\",\n  \"description\": \"Team description\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/Teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Team",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"name\": \"Updated Team\",\n  \"description\": \"Updated description\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/Teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Teams"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

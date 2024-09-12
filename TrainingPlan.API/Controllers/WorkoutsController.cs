@@ -94,10 +94,10 @@ namespace TrainingPlan.API.Controllers
 
             if (!response.Success)
             {
-                return BadRequest(response.Message);
+                return BadRequest(response);
             }
 
-            return Ok(response.Message);
+            return Ok(response);
         }
 
         /// <summary>
@@ -123,10 +123,10 @@ namespace TrainingPlan.API.Controllers
 
             if (!response.Success)
             {
-                return BadRequest(response.Message);
+                return BadRequest(response);
             }
 
-            return Ok(response.Message);
+            return Ok(response);
         }
 
         /// <summary>
@@ -150,10 +150,10 @@ namespace TrainingPlan.API.Controllers
 
             if (!response.Success)
             {
-                return BadRequest(response.Message);
+                return BadRequest(response);
             }
 
-            return Ok(response.Message);
+            return Ok(response);
         }
     }
 }

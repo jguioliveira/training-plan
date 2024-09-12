@@ -23,7 +23,7 @@ namespace TrainingPlan.Infrastructure.Repositories
                 filters.Add("Title", title);
             }
 
-            var results = await base.GetPagedAsync(lastId, pageSize, direction, filters);
+            var results = await base.GetPagedAsync("Contents", lastId, pageSize, direction, filters);
 
             var items = await results.ReadAsync<ContentDTO>();
             var total = await results.ReadSingleAsync<int>();

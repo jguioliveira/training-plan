@@ -34,8 +34,4 @@
     <ProjectReference Include="..\TrainingPlan.Shared\TrainingPlan.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\Features\InstructorFeatures\" />
-  </ItemGroup>
-
 </Project>

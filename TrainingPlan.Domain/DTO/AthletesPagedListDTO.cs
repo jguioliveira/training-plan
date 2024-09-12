@@ -4,4 +4,8 @@
     public record AthletesPagedListDTO : PaginationResult<AthleteDTO>
     {
     }
+
+    public record InstructorsPagedListDTO : PaginationResult<InstructorDTO>
+    {
+    }
 }

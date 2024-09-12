@@ -59,7 +59,7 @@ namespace TrainingPlan.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    BlobId = table.Column<string>(type: "text", nullable: false),
+                    Data = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifiedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
@@ -221,7 +221,7 @@ namespace TrainingPlan.Infrastructure.Migrations
                     Name = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Goal = table.Column<string>(type: "text", nullable: false),
-                    AhtleteId = table.Column<int>(type: "integer", nullable: false),
+                    AthleteId = table.Column<int>(type: "integer", nullable: false),
                     InstructorId = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifiedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
@@ -230,8 +230,8 @@ namespace TrainingPlan.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Plans", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Plans_Person_AhtleteId",
-                        column: x => x.AhtleteId,
+                        name: "FK_Plans_Person_AthleteId",
+                        column: x => x.AthleteId,
                         principalTable: "Person",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -266,15 +266,13 @@ namespace TrainingPlan.Infrastructure.Migrations
                 name: "SocialMedia",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     TeamId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Account = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SocialMedia", x => x.Id);
+                    table.PrimaryKey("PK_SocialMedia", x => new { x.Name, x.TeamId });
                     table.ForeignKey(
                         name: "FK_SocialMedia_Teams_TeamId",
                         column: x => x.TeamId,
@@ -337,11 +335,12 @@ namespace TrainingPlan.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PersonId = table.Column<int>(type: "integer", nullable: false),
                     PersonName = table.Column<string>(type: "text", nullable: false),
                     PersonType = table.Column<string>(type: "text", nullable: false),
                     Text = table.Column<string>(type: "text", nullable: false),
-                    Date = table.Column<DateTime>(type: "date", nullable: false),
                     WorkoutId = table.Column<int>(type: "integer", nullable: false),
+                    IsRemoved = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifiedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -399,9 +398,9 @@ namespace TrainingPlan.Infrastructure.Migrations
                 column: "WorkoutId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Plans_AhtleteId",
+                name: "IX_Plans_AthleteId",
                 table: "Plans",
-                column: "AhtleteId");
+                column: "AthleteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Plans_InstructorId",

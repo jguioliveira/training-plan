@@ -8,6 +8,10 @@ namespace TrainingPlan.Domain.Repositories
         Task<AthletesPagedListDTO> GetAthletesAsync(int lastId, int pageSize, string direction, string name);
 
         Task<AthleteDTO?> GetAthleteAsync(int id);
+
+        Task<InstructorsPagedListDTO> GetInstructorsAsync(int lastId, int pageSize, string direction, string name);
+
+        Task<InstructorDTO?> GetInstructorAsync(int id);
     }
 
 

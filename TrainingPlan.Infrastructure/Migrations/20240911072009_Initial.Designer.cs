@@ -12,8 +12,8 @@ using TrainingPlan.Infrastructure.DbContext;
 namespace TrainingPlan.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240905081421_UpdatingCommentTable")]
-    partial class UpdatingCommentTable
+    [Migration("20240911072009_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

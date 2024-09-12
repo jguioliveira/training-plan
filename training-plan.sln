@@ -11,6 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainingPlan.Shared", "Trai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainingPlan.API", "TrainingPlan.API\TrainingPlan.API.csproj", "{DBD7F7EE-B510-43CC-BE76-6F97DBDC2170}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingPlan.API.Test", "TrainingPlan.API.Test\TrainingPlan.API.Test.csproj", "{4F965E12-1B8E-4FDD-804D-AD3E2478C100}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenAPI", "OpenAPI", "{033A2B86-933C-4727-9CE1-A0ACF614A90C}"
+	ProjectSection(SolutionItems) = preProject
+		swagger.json = swagger.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E72CAF3E-28FA-4363-8111-12A0ECB5ED52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingPlan.API.IntegrationTests", "TrainingPlan.API.IntegrationTests\TrainingPlan.API.IntegrationTests.csproj", "{6222C3F1-4E19-4BBE-B8E1-30F0D208F449}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +44,21 @@ Global
 		{DBD7F7EE-B510-43CC-BE76-6F97DBDC2170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBD7F7EE-B510-43CC-BE76-6F97DBDC2170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBD7F7EE-B510-43CC-BE76-6F97DBDC2170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F965E12-1B8E-4FDD-804D-AD3E2478C100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F965E12-1B8E-4FDD-804D-AD3E2478C100}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F965E12-1B8E-4FDD-804D-AD3E2478C100}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F965E12-1B8E-4FDD-804D-AD3E2478C100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6222C3F1-4E19-4BBE-B8E1-30F0D208F449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6222C3F1-4E19-4BBE-B8E1-30F0D208F449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6222C3F1-4E19-4BBE-B8E1-30F0D208F449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6222C3F1-4E19-4BBE-B8E1-30F0D208F449}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4F965E12-1B8E-4FDD-804D-AD3E2478C100} = {E72CAF3E-28FA-4363-8111-12A0ECB5ED52}
+		{6222C3F1-4E19-4BBE-B8E1-30F0D208F449} = {E72CAF3E-28FA-4363-8111-12A0ECB5ED52}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC798E71-9F90-4E83-9763-8F7BC32F1EE0}

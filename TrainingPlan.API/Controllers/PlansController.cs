@@ -15,6 +15,36 @@ namespace TrainingPlan.API.Controllers
         private readonly IMediator _mediator = mediator;
 
         /// <summary>
+        /// Get paginated list of plans
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="pageSize">Number of athletes per page.</param>
+        /// <param name="lastRowId">ID of the last athlete in the previous page.</param>
+        /// <param name="direction">Sort direction (ASC or DESC).</param>
+        /// <returns>Paginated list of plans.</returns>
+        [HttpGet]
+        [SwaggerOperation(Summary = "Get plans")]
+        [SwaggerResponse(404, "Plan was not found")]
+        [SwaggerResponse(200, "Returns all plans", typeof(PlanDTO))]
+        public async Task<ActionResult<PlanDTO>> GetAllAsync(
+            CancellationToken cancellationToken,
+            [FromHeader(Name = "pageSize")] int pageSize = 10,
+            [FromHeader(Name = "lastId")] int lastRowId = 0,
+            [FromHeader(Name = "direction")] string? direction = "ASC")
+        {
+            GetAllPlansRequest request = new() { Direction = direction, PageSize = pageSize, LastId = lastRowId };
+
+            var response = await _mediator.Send(request, cancellationToken);
+
+            if (response == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(response);
+        }
+
+        /// <summary>
         /// Get plan by athlete ID.
         /// </summary>
         /// <param name="athleteId">The ID of the athlete.</param>

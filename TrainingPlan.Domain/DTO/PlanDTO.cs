@@ -1,6 +1,10 @@
 ﻿
 namespace TrainingPlan.Domain.DTO
 {
+    public record PlansPagedListDTO : PaginationResult<PlanDTO>
+    {
+    }
+
     public record PlanDTO
     {
         public int Id { get; set; }
@@ -19,6 +23,7 @@ namespace TrainingPlan.Domain.DTO
 
     public record WorkoutDTO
     {
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public string Description { get; set; }
         public int? ContentId { get; set; }
@@ -32,6 +37,8 @@ namespace TrainingPlan.Domain.DTO
 
     public record ContentDTO
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
 
         public string? Description { get; set; }

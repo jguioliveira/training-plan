@@ -37,7 +37,7 @@ namespace TrainingPlan.Infrastructure.Repositories
             return _dapperConnection.QueryAsync<IEntity>(query, parameters);
         }
 
-        protected virtual Task<SqlMapper.GridReader> GetPagedAsync(int lastId, int pageSize, string direction, Dictionary<string, object> filteredColumns)
+        protected virtual Task<SqlMapper.GridReader> GetPagedAsync(string entityName, int lastId, int pageSize, string direction, Dictionary<string, object> filteredColumns)
         {
             string where = "WHERE ";
             string orderBy = $"ORDER BY \"Id\" ASC";
@@ -53,7 +53,7 @@ namespace TrainingPlan.Infrastructure.Repositories
             {
                 foreach (var column in filteredColumns)
                 {
-                    where += $" \"{column.Key}\" = ${column.Key} AND ";
+                    where += $" \"{column.Key}\" = @{column.Key} AND ";
                     dictionary.Add($"{column.Key}", column.Value);
                 }
             }
@@ -68,9 +68,9 @@ namespace TrainingPlan.Infrastructure.Repositories
 
             var parameters = new DynamicParameters(dictionary);
 
-            string query = $"SELECT * FROM \"{typeof(IEntity).Name}\" {where} {orderBy} {limit}; ";
+            string query = $"SELECT * FROM \"{entityName}\" {where} {orderBy} {limit}; ";
 
-            query += $"\n  SELECT COUNT(*) As Total FROM \"{typeof(IEntity).Name}\" {where};";
+            query += $"\n  SELECT COUNT(*) As Total FROM \"{entityName}\" {where};";
 
             return _dapperConnection.QueryMultipleAsync(query, param: parameters);
         }

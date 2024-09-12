@@ -48,8 +48,8 @@ builder.Services.AddTransient<IPlanRepository, PlanRepository>();
 builder.Services.AddTransient<IWorkoutRepository, WorkoutRepository>();
 builder.Services.AddTransient<IContentRepository, ContentRepository>();
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
-builder.Services.AddValidatorsFromAssemblyContaining(typeof(Program));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(TrainingPlan.API.Controllers.AthletesController).Assembly));
+builder.Services.AddValidatorsFromAssemblyContaining(typeof(TrainingPlan.API.Controllers.AthletesController));
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 builder.Services.AddSingleton<IAzureBlobService, AzureBlobService>();

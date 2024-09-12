@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using TrainingPlan.Infrastructure.DbContext;
 
 namespace TrainingPlan.API.Application.Common.Services
 {
@@ -9,6 +10,9 @@ namespace TrainingPlan.API.Application.Common.Services
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             using var scope = _serviceProvider.CreateScope();
+
+            var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            await context.Database.EnsureCreatedAsync(cancellationToken);
 
             var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             string[] roleNames = { "ADMIN", "INSTRUCTOR", "ATHLETE" };
