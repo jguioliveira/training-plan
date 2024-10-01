@@ -1,0 +1,14 @@
+.header {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 10px 20px;
+  position: fixed;
+  width: calc(100% - 250px);
+  left: 250px;
+  top: 0;
+  z-index: 1000;
+}
+
+.header h1 {
+  margin: 0;
+}
