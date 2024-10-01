@@ -57,20 +57,20 @@ namespace TrainingPlan.Infrastructure.Repositories
                     dictionary.Add($"{column.Key}", column.Value);
                 }
             }
-
-            where += "\"Id\" > @id ";
+            
+            string lastIdWhere = "\"Id\" > @id ";
 
             if (direction == "DESC")
             {
-                where += "\"Id\" < @id ";
+                lastIdWhere = "\"Id\" < @id ";
                 orderBy = $"ORDER BY \"Id\" DESC";
             }
 
             var parameters = new DynamicParameters(dictionary);
 
-            string query = $"SELECT * FROM \"{entityName}\" {where} {orderBy} {limit}; ";
+            string query = $"SELECT * FROM \"{entityName}\" {where} {lastIdWhere} {orderBy} {limit}; ";
 
-            query += $"\n  SELECT COUNT(*) As Total FROM \"{entityName}\" {where};";
+            query += $"\n  SELECT COUNT(*) As Total FROM \"{entityName}\" {where} {"1=1"};";
 
             return _dapperConnection.QueryMultipleAsync(query, param: parameters);
         }
